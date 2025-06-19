@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Babe</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #1a1a2e, #16213e);
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      flex-direction: column;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 30px 40px;
+      max-width: 700px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      position: relative;
+      z-index: 1;
+    }
+
+    .typing-text {
+      font-size: 1.2em;
+      line-height: 1.6;
+      white-space: pre-line;
+      min-height: 200px;
+      margin-top: 20px;
+      display: none;
+    }
+
+    img {
+      width: 200px;
+      height: auto;
+      border-radius: 20px;
+      margin-bottom: 20px; 
+      box-shadow: 0 0 15px rgba(255,255,255,0.3);
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 0 auto;
+      padding: 10px 25px;
+      background: #e94560;
+      border: none;
+      color: white;
+      font-size: 1em;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #ff6f91;
+    }
+
+    .heart {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: pink;
+      transform: rotate(45deg);
+      animation: floatUp 4s linear infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: pink;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -7.5px;
+      left: 0;
+    }
+
+    .heart::after {
+      top: 0;
+      left: -7.5px;
+    }
+
+    @keyframes floatUp {
+      0% {
+        bottom: -20px;
+        opacity: 0;
+        transform: translateX(0) scale(0.6) rotate(45deg);
+      }
+      50% {
+        opacity: 1;
+        transform: translateX(20px) scale(1) rotate(45deg);
+      }
+      100% {
+        bottom: 100vh;
+        opacity: 0;
+        transform: translateX(-20px) scale(0.6) rotate(45deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🎂 Happy Birthday My Love 💖</h1>
+    <img src="12122.png" alt="รูปคู่ของเรา">
+    <button class="btn" onclick="revealMessage()">Click Me 💌</button>
+    <div class="typing-text" id="message"></div>
+  </div>
+
+  <script>
+    const text = `วันนี้คือวันของเธอ แต่ทุกวันคือวันที่ฉันโชคดี  
+ที่มีเธออยู่ข้างๆ 💕  
+ขอให้เธอมีรอยยิ้มที่สดใสที่สุด  
+เจอแต่สิ่งดีๆ แบบที่ใจเธอเป็น 🌟  
+รักเธอเสมอ ไม่ต้องรอวันพิเศษใดๆ  
+เพราะทุกวัน... ฉันก็รักเธอเท่าเดิม ✨💘`;
+
+    let i = 0;
+    const speed = 50;
+    const messageDiv = document.getElementById("message");
+
+    function revealMessage() {
+      messageDiv.style.display = 'block';
+      typeWriter();
+    }
+
+    function typeWriter() {
+      if (i < text.length) {
+        messageDiv.innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+      }
+    }
+
+    // Floating hearts
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.bottom = '0px';
+      heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }, 300);
+  </script>
+</body>
+</html>
